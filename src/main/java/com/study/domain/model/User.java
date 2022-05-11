@@ -19,6 +19,6 @@ public class User {
 
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private List<ToDo> toDoList;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+//    private List<ToDo> toDoList;
 }
