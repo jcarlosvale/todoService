@@ -2,10 +2,8 @@ package com.study.controller;
 
 import com.study.dto.TodoDto;
 import com.study.service.TodoService;
-import com.study.service.TodoServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +21,8 @@ public class TodoController {
     public ResponseEntity<List<TodoDto>> getTodoListFromUser(@PathVariable(name="userName") String userName) {
 
         List<TodoDto> todoDtoList =  service.getTodoListFromUser(userName);
-        return new ResponseEntity(todoDtoList, HttpStatus.OK);
 
+        return ResponseEntity.ok(todoDtoList);
     }
 
     @DeleteMapping(path="/users/{userName}/todos/{todoId}")
@@ -32,7 +30,8 @@ public class TodoController {
                                                    @PathVariable(name="todoId") int todoId){
 
         service.deleteTodoFromUser(userName, todoId);
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
+
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping(path="/todos")
