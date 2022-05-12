@@ -1,6 +1,7 @@
 package com.study.controller;
 
 import com.study.dto.TodoDto;
+import com.study.exception.TodoNotFoundException;
 import com.study.exception.UserNotFoundException;
 import com.study.service.TodoService;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +30,8 @@ public class TodoController {
 
     @DeleteMapping(path="/users/{userName}/todos/{todoId}")
     public ResponseEntity<Void> deleteTodoFromUser(@PathVariable(name="userName") String userName,
-                                                   @PathVariable(name="todoId") int todoId){
+                                                   @PathVariable(name="todoId") long todoId)
+            throws UserNotFoundException, TodoNotFoundException {
 
         service.deleteTodoFromUser(userName, todoId);
 

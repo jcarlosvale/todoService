@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Data
@@ -13,7 +12,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name = "todo")
-public class ToDo {
+public class Todo {
 
     @Id
     @GeneratedValue
