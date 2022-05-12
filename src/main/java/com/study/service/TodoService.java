@@ -1,12 +1,13 @@
 package com.study.service;
 
 import com.study.dto.TodoDto;
+import com.study.exception.UserNotFoundException;
 
 import java.util.List;
 
 public interface TodoService {
 
-    List<TodoDto> getTodoListFromUser(String userName);
+    List<TodoDto> getTodoListFromUser(String userName) throws UserNotFoundException;
 
     void deleteTodoFromUser(String userName, int todoId);
 

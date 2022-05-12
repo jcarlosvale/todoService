@@ -1,6 +1,7 @@
 package com.study.controller;
 
 import com.study.dto.TodoDto;
+import com.study.exception.UserNotFoundException;
 import com.study.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -18,7 +19,8 @@ public class TodoController {
     private final TodoService service;
 
     @GetMapping(path="/users/{userName}/todos")
-    public ResponseEntity<List<TodoDto>> getTodoListFromUser(@PathVariable(name="userName") String userName) {
+    public ResponseEntity<List<TodoDto>> getTodoListFromUser(@PathVariable(name="userName") String userName)
+            throws UserNotFoundException {
 
         List<TodoDto> todoDtoList =  service.getTodoListFromUser(userName);
 
