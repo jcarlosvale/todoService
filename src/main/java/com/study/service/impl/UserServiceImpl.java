@@ -1,4 +1,4 @@
-package com.study.service;
+package com.study.service.impl;
 
 import com.study.domain.model.User;
 import com.study.domain.repository.UserRepository;
@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class UserServiceImpl {
 
     private final UserRepository repository;
 

@@ -1,4 +1,4 @@
-package com.study.service;
+package com.study.service.impl;
 
 import com.study.domain.model.Todo;
 import com.study.domain.model.User;
@@ -6,6 +6,7 @@ import com.study.domain.repository.TodoRepository;
 import com.study.dto.TodoDto;
 import com.study.exception.TodoNotFoundException;
 import com.study.exception.UserNotFoundException;
+import com.study.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,9 @@ import java.util.stream.Collectors;
 @Service
 @Log4j2
 @RequiredArgsConstructor
-public class TodoServiceImpl implements TodoService{
+public class TodoServiceImpl implements TodoService {
 
+    //FIXME: IMPLEMENTAR INTERFACE
     private final UserService userService;
     private final TodoRepository repository;
 
@@ -69,11 +71,15 @@ public class TodoServiceImpl implements TodoService{
 
     @Override
     public void updateTodo(TodoDto todoDto) {
-
+        //FIXME: implementar UpdateTodo
+        //PASSO 1: fazer validações: verificar se o Todo existe, senão lançar exceção.
+        //PASSO 2:  usar método save() do repositório com o ToDo entity.
     }
 
     @Override
     public void saveTodo(TodoDto todoDto) {
-
+        //FIXME: implementar UpdateTodo
+        // PASSO 1:  usar método save() do repositório com o ToDo entity.
+        //OBS: o Todo não deve possuir ID, porque é gerado por autoincremento, veja a classe Todo. Precisa validar o parâmetro?
     }
 }

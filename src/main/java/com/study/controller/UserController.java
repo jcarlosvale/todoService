@@ -1,7 +1,7 @@
 package com.study.controller;
 
 import com.study.dto.UserDto;
-import com.study.service.UserService;
+import com.study.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,7 @@ import java.util.List;
 @Log4j2
 public class UserController {
 
-    private final UserService service;
+    private final UserServiceImpl service;
 
     @PostMapping(path="/user")
     public ResponseEntity<Void> saveUser(@RequestBody UserDto userDto){

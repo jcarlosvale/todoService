@@ -21,7 +21,4 @@ public class Category {
     private Long id;
 
     private String description;
-
-//    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "categorySet")
-//    private Set<Todo> todoSet;
 }
