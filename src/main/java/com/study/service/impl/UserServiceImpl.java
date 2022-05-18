@@ -4,6 +4,7 @@ import com.study.domain.model.User;
 import com.study.domain.repository.UserRepository;
 import com.study.dto.UserDto;
 import com.study.exception.UserNotFoundException;
+import com.study.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl {
+public class UserServiceImpl  implements UserService {
 
     private final UserRepository repository;
 

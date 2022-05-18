@@ -16,11 +16,11 @@ public interface TodoService {
      * Localiza e atualiza o Todo.
      * @param todoDto
      */
-    void updateTodo(TodoDto todoDto);
+    void updateTodo(TodoDto todoDto) throws UserNotFoundException;
 
     /**
      * Verifica se não existe e então salva o Todo.
      * @param todoDto
      */
-    void saveTodo(TodoDto todoDto);
+    void saveTodo(TodoDto todoDto) throws UserNotFoundException;
 }
