@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 @Data
@@ -20,6 +21,7 @@ public class Todo {
     @GeneratedValue
     private Long id;
 
+    @NotBlank(message="Descricao nao deve ficar vazia")
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)  //FetchType.EAGER
