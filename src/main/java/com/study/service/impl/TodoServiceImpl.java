@@ -7,6 +7,7 @@ import com.study.dto.TodoDto;
 import com.study.exception.TodoNotFoundException;
 import com.study.exception.UserNotFoundException;
 import com.study.service.TodoService;
+import com.study.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class TodoServiceImpl implements TodoService {
 
-    //FIXME: IMPLEMENTAR INTERFACE
     private final UserService userService;
     private final TodoRepository repository;
 
@@ -70,16 +70,24 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public void updateTodo(TodoDto todoDto) {
-        //FIXME: implementar UpdateTodo
-        //PASSO 1: fazer validações: verificar se o Todo existe, senão lançar exceção.
-        //PASSO 2:  usar método save() do repositório com o ToDo entity.
+    public void updateTodo(TodoDto todoDto) throws UserNotFoundException {
+        User user = userService.findUserByUsername(todoDto.getUsername());
+        Todo todo = Todo.builder()
+                .id(todoDto.getId())
+                .description(todoDto.getDescription())
+                .user(user)
+                .build();
+        repository.save(todo);
+
     }
 
     @Override
-    public void saveTodo(TodoDto todoDto) {
-        //FIXME: implementar UpdateTodo
-        // PASSO 1:  usar método save() do repositório com o ToDo entity.
-        //OBS: o Todo não deve possuir ID, porque é gerado por autoincremento, veja a classe Todo. Precisa validar o parâmetro?
+    public void saveTodo(TodoDto todoDto) throws UserNotFoundException {
+        User user = userService.findUserByUsername(todoDto.getUsername());
+        Todo todo = Todo.builder()
+                .description(todoDto.getDescription())
+                .user(user)
+                .build();
+        repository.save(todo);
     }
 }

@@ -19,34 +19,34 @@ public class TodoController {
 
     private final TodoService service;
 
-    @GetMapping(path="/users/{userName}/todos")
-    public ResponseEntity<List<TodoDto>> getTodoListFromUser(@PathVariable(name="userName") String userName)
+    @GetMapping(path="/users/{username}/todos")
+    public ResponseEntity<List<TodoDto>> getTodoListFromUser(@PathVariable(name="username") String username)
             throws UserNotFoundException {
 
-        List<TodoDto> todoDtoList =  service.getTodoListFromUser(userName);
+        List<TodoDto> todoDtoList =  service.getTodoListFromUser(username);
 
         return ResponseEntity.ok(todoDtoList);
     }
 
-    @DeleteMapping(path="/users/{userName}/todos/{todoId}")
-    public ResponseEntity<Void> deleteTodoFromUser(@PathVariable(name="userName") String userName,
+    @DeleteMapping(path="/users/{username}/todos/{todoId}")
+    public ResponseEntity<Void> deleteTodoFromUser(@PathVariable(name="username") String username,
                                                    @PathVariable(name="todoId") long todoId)
             throws UserNotFoundException, TodoNotFoundException {
 
-        service.deleteTodoFromUser(userName, todoId);
+        service.deleteTodoFromUser(username, todoId);
 
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping(path="/todos")
-    public ResponseEntity<Void> updateTodo(@RequestBody TodoDto todoDto){
+    public ResponseEntity<Void> updateTodo(@RequestBody TodoDto todoDto) throws UserNotFoundException {
 
         service.updateTodo(todoDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PostMapping(path="/todos")
-    public ResponseEntity<Void> saveTodo(@RequestBody TodoDto todoDto){
+    public ResponseEntity<Void> saveTodo(@RequestBody TodoDto todoDto) throws UserNotFoundException {
 
         service.saveTodo(todoDto);
         return new ResponseEntity<>(HttpStatus.CREATED);

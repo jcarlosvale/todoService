@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class TodoDto {
 
     private Long id;
-    private String userName;
+    private String username;
     private String description;
 
 }
