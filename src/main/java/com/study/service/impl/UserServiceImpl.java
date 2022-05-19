@@ -1,6 +1,6 @@
 package com.study.service.impl;
 
-import com.study.domain.model.User;
+import com.study.domain.model.UserEntity;
 import com.study.domain.repository.UserRepository;
 import com.study.dto.UserDto;
 import com.study.exception.UserNotFoundException;
@@ -18,8 +18,8 @@ public class UserServiceImpl implements UserService {
     private final UserRepository repository;
 
     public void saveUser(UserDto userDto) {
-        User user = new User(userDto.getUsername(), userDto.getName());
-        repository.save(user);
+        UserEntity userEntity = new UserEntity(userDto.getUsername(), userDto.getName());
+        repository.save(userEntity);
     }
 
     public List<UserDto> getAll() {
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList());
     }
 
-    public User findUserByUsername(String username) throws UserNotFoundException{
+    public UserEntity findUserByUsername(String username) throws UserNotFoundException{
         return repository
                 .findById(username)
                 .orElseThrow(() -> new UserNotFoundException("Usuario nao encontrado."));

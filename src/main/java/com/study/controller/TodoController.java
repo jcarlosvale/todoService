@@ -1,6 +1,7 @@
 package com.study.controller;
 
 import com.study.dto.TodoDto;
+import com.study.dto.UserDto;
 import com.study.exception.TodoNotFoundException;
 import com.study.exception.UserNotFoundException;
 import com.study.service.TodoService;
@@ -50,6 +51,14 @@ public class TodoController {
 
         service.saveTodo(todoDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PostMapping(path="/random")
+    public ResponseEntity<TodoDto> saveRandomTodo(@RequestBody final UserDto userDto) {
+
+        final TodoDto dto = service.generateRandomTodo(userDto);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
 
 }

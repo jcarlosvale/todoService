@@ -15,7 +15,7 @@ import java.util.Set;
 @Builder
 @Entity
 @Table(name = "todo")
-public class Todo {
+public class TodoEntity {
 
     @Id
     @GeneratedValue
@@ -25,7 +25,7 @@ public class Todo {
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)  //FetchType.EAGER
-    private User user;
+    private UserEntity userEntity;
 
     @ManyToMany(fetch = FetchType.LAZY)
     private Set<Category> categorySet;

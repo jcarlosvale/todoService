@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @Entity
 @Table(name="usuario")
-public class User {
+public class UserEntity {
 
     @Id
     private String username;
@@ -24,6 +24,6 @@ public class User {
     @Size(min = 3)
     private String name;
 
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-//    private List<Todo> toDoList;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userEntity")
+//    private List<TodoEntity> toDoList;
 }
