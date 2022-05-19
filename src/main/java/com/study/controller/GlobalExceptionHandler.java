@@ -26,7 +26,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = IllegalArgumentException.class)
     public ResponseEntity<ErrorDto> handleException(Exception e) {
-        log.error("GENERICO: " + e);
+        log.error("Argumento ilegal: " + e);
         var erroDto =
             ErrorDto.builder()
                     .mensagem(e.getMessage())

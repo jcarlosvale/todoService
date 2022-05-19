@@ -1,24 +1,34 @@
 package com.study.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TodoDto {
 
     private Long id;
 
-    @NotBlank
+    //@NotBlank
+
     private String username;
 
     @NotBlank
     private String description;
 
+
+    @JsonCreator
+    public TodoDto(@JsonProperty Long id,
+                   @JsonProperty(value = "username", required = true) String username,
+                   @JsonProperty String description) {
+        this.id = id;
+        this.username = username;
+        this.description = description;
+    }
 }

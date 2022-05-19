@@ -47,7 +47,7 @@ public class TodoController {
     }
 
     @PostMapping(path="/todos")
-    public ResponseEntity<Void> saveTodo(@RequestBody @Valid TodoDto todoDto) throws UserNotFoundException {
+    public ResponseEntity<Void> saveTodo(@RequestBody TodoDto todoDto) throws UserNotFoundException {
 
         service.saveTodo(todoDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
