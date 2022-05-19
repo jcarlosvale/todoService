@@ -24,9 +24,9 @@ public class TodoDto {
 
 
     @JsonCreator
-    public TodoDto(@JsonProperty Long id,
-                   @JsonProperty(value = "username", required = true) String username,
-                   @JsonProperty String description) {
+    public TodoDto(@JsonProperty final Long id,
+                   @JsonProperty(value = "username", required = true) final String username,
+                   @JsonProperty final String description) {
         this.id = id;
         this.username = username;
         this.description = description;

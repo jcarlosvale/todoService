@@ -15,6 +15,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
+
 @Service
 @Log4j2
 @RequiredArgsConstructor
@@ -24,9 +27,11 @@ public class TodoServiceImpl implements TodoService {
     private final TodoRepository repository;
 
     @Override
-    public List<TodoDto> getTodoListFromUser(String username) throws UserNotFoundException {
+    public List<TodoDto> getTodoListFromUser(final String username) throws UserNotFoundException {
         try {
-            User user = userService.findUserByUsername(username);
+            checkNotNull(username, "username null");
+
+            final User user = userService.findUserByUsername(username);
 
             return repository
                     .findAllByUserEquals(user)
@@ -42,13 +47,16 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public void deleteTodoFromUser(String username, long todoId)
+    public void deleteTodoFromUser(final String username, final long todoId)
             throws UserNotFoundException, TodoNotFoundException {
         try {
 
+            checkNotNull(username);
+            checkArgument(todoId > 0);
+
             userService.findUserByUsername(username);
 
-            Todo todo = findTodoById(todoId);
+            final Todo todo = findTodoById(todoId);
 
             repository.delete(todo);
 
@@ -63,16 +71,22 @@ public class TodoServiceImpl implements TodoService {
         }
     }
 
-    private Todo findTodoById(long todoId) throws TodoNotFoundException {
+    private Todo findTodoById(final long todoId) throws TodoNotFoundException {
+
+        checkArgument(todoId > 0);
+
         return repository
                 .findById(todoId)
                 .orElseThrow(() -> new TodoNotFoundException("Todo nao encontrado"));
     }
 
     @Override
-    public void updateTodo(TodoDto todoDto) throws UserNotFoundException {
-        User user = userService.findUserByUsername(todoDto.getUsername());
-        Todo todo = Todo.builder()
+    public void updateTodo(final TodoDto todoDto) throws UserNotFoundException {
+
+        checkNotNull(todoDto);
+
+        final User user = userService.findUserByUsername(todoDto.getUsername());
+        final Todo todo = Todo.builder()
                 .id(todoDto.getId())
                 .description(todoDto.getDescription())
                 .user(user)
@@ -82,9 +96,9 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public void saveTodo(TodoDto todoDto) throws UserNotFoundException {
-        User user = userService.findUserByUsername(todoDto.getUsername());
-        Todo todo = Todo.builder()
+    public void saveTodo(final TodoDto todoDto) throws UserNotFoundException {
+        final User user = userService.findUserByUsername(todoDto.getUsername());
+        final Todo todo = Todo.builder()
                 .description(todoDto.getDescription())
                 .user(user)
                 .build();

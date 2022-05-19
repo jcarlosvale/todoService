@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -21,17 +20,17 @@ public class TodoController {
     private final TodoService service;
 
     @GetMapping(path="/users/{username}/todos")
-    public ResponseEntity<List<TodoDto>> getTodoListFromUser(@PathVariable(name="username") String username)
+    public ResponseEntity<List<TodoDto>> getTodoListFromUser(@PathVariable(name="username") final String username)
             throws UserNotFoundException {
 
-        List<TodoDto> todoDtoList =  service.getTodoListFromUser(username);
+        final List<TodoDto> todoDtoList =  service.getTodoListFromUser(username);
 
         return ResponseEntity.ok(todoDtoList);
     }
 
     @DeleteMapping(path="/users/{username}/todos/{todoId}")
-    public ResponseEntity<Void> deleteTodoFromUser(@PathVariable(name="username") String username,
-                                                   @PathVariable(name="todoId") long todoId)
+    public ResponseEntity<Void> deleteTodoFromUser(@PathVariable(name="username") final String username,
+                                                   @PathVariable(name="todoId") final long todoId)
             throws UserNotFoundException, TodoNotFoundException {
 
         service.deleteTodoFromUser(username, todoId);
@@ -40,14 +39,14 @@ public class TodoController {
     }
 
     @PutMapping(path="/todos")
-    public ResponseEntity<Void> updateTodo(@RequestBody TodoDto todoDto) throws UserNotFoundException {
+    public ResponseEntity<Void> updateTodo(@RequestBody final TodoDto todoDto) throws UserNotFoundException {
 
         service.updateTodo(todoDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PostMapping(path="/todos")
-    public ResponseEntity<Void> saveTodo(@RequestBody TodoDto todoDto) throws UserNotFoundException {
+    public ResponseEntity<Void> saveTodo(@RequestBody final TodoDto todoDto) throws UserNotFoundException {
 
         service.saveTodo(todoDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
