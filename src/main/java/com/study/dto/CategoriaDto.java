@@ -17,6 +17,6 @@ public class CategoriaDto {
 
     private Long id;
 
-    @NotBlank
+    @NotBlank(message="Nao pode ser blank")
     private String description;
 }
