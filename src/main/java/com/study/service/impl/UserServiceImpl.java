@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -18,6 +20,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository repository;
 
     public void saveUser(UserDto userDto) {
+        checkNotNull(userDto);
         UserEntity userEntity = new UserEntity(userDto.getUsername(), userDto.getName());
         repository.save(userEntity);
     }
