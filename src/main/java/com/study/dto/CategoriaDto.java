@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 
-@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Data
@@ -17,6 +16,6 @@ public class CategoriaDto {
 
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "Can't be blank")
     private String description;
 }
