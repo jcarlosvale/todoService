@@ -23,4 +23,6 @@ public interface TodoService {
      * @param todoDto
      */
     void saveTodo(TodoDto todoDto);
+
+    TodoDto retrieveRandomTodo(TodoDto todoDto);
 }

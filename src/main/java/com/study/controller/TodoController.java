@@ -52,4 +52,10 @@ public class TodoController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @PostMapping(path="/random")
+    public ResponseEntity<TodoDto> saveRandom(@RequestBody TodoDto todoDto) {
+        var todo = service.retrieveRandomTodo(todoDto);
+        return new ResponseEntity<>(todo, HttpStatus.CREATED);
+    }
+
 }

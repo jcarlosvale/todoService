@@ -1,8 +1,9 @@
 server:
   port: 8080
 
-
 spring:
+  h2:
+    console.enabled: true
   jpa:
     properties:
       show-sql: true

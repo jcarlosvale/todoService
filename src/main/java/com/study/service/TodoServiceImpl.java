@@ -3,12 +3,14 @@ package com.study.service;
 import com.study.domain.model.Todo;
 import com.study.domain.model.User;
 import com.study.domain.repository.TodoRepository;
+import com.study.dto.ActivityDto;
 import com.study.dto.TodoDto;
 import com.study.exception.TodoNotFoundException;
 import com.study.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -74,6 +76,15 @@ public class TodoServiceImpl implements TodoService{
 
     @Override
     public void saveTodo(TodoDto todoDto) {
+        repository.save(Todo.builder().description(todoDto.getDescription()).build());
+    }
 
+    @Override
+    public TodoDto retrieveRandomTodo(TodoDto todoDto) {
+        final RestTemplate restTemplate = new RestTemplate();
+        final ActivityDto activity =
+                restTemplate.getForEntity("https://www.boredapi.com/api/activity",
+                ActivityDto.class).getBody();
+        return TodoDto.builder().userName(todoDto.getUserName()).description(activity.getDescricao()).build();
     }
 }
