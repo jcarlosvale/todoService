@@ -1,5 +1,5 @@
-INSERT INTO usuario (username, name)
-VALUES ('aluno', 'rebecabfv' );
+--INSERT INTO usuario (username, name)
+--VALUES ('aluno', 'rebecabfv' );
 --INSERT INTO usuario (username, name)
 --VALUES ('aluno', 'karina' );
 --INSERT INTO todoEntity (id, description, user_username)

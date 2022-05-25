@@ -1,0 +1,18 @@
+server:
+  port: 8080
+
+
+spring:
+  jpa:
+    defer-datasource-initialization: true
+    properties:
+      show-sql: true
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+  datasource:
+      url: jdbc:h2:mem:testdb
+      driverClassName: org.h2.Driver
+      username: sa
+      password: password
