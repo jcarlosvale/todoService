@@ -12,10 +12,10 @@ class CategoryTest {
         String description = "some description";
 
         //WHEN
-        var dto = new Category(id, description);
+        var entity = new Category(id, description);
 
         //THEN
-        assertThat(dto.getId()).isEqualTo(id);
-        assertThat(dto.getDescription()).isEqualTo(description);
+        assertThat(entity.getId()).isEqualTo(id);
+        assertThat(entity.getDescription()).isEqualTo(description);
     }
 }
