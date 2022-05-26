@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Data
@@ -31,3 +30,5 @@ public class TodoEntity {
     @ManyToMany(fetch = FetchType.LAZY)
     private Set<Category> categorySet;
 }
+
+//MOCK
