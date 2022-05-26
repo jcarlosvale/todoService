@@ -12,7 +12,7 @@ import javax.validation.ValidatorFactory;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CategoriaDtoTest {
