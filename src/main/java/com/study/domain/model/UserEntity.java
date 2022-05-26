@@ -1,6 +1,7 @@
 package com.study.domain.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 @Table(name="usuario")
 public class UserEntity {
 
@@ -23,6 +25,7 @@ public class UserEntity {
     @NotBlank
     @Size(min = 3)
     private String name;
+
 
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userEntity")
 //    private List<TodoEntity> toDoList;
