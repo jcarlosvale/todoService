@@ -25,7 +25,4 @@ public class UserEntity {
     @NotBlank
     @Size(min = 3)
     private String name;
-
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userEntity")
-//    private List<TodoEntity> toDoList;
 }
